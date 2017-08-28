@@ -100,6 +100,7 @@ class View extends Dot_Template
 	{
 		$dotAuth = Dot_Auth::getInstance();
 		$registry = Zend_Registry::getInstance();
+		$session = Zend_Registry::get('session');
 		
 		// this template variable will be replaced with "selected"
 		$selectedItem = "SEL_" . strtoupper($registry->requestController . "_" . $registry->requestAction);
@@ -115,6 +116,7 @@ class View extends Dot_Template
 		if ($dotAuth->hasIdentity('user'))
 		{
 			$this->parse('top_menu_logged_block', 'top_menu_logged', true);
+			$this->setVar('USERNAME', $session->user->username);
 			$this->parse('top_menu_not_logged_block', '');		
 		}
 		else
@@ -122,6 +124,7 @@ class View extends Dot_Template
 			$this->parse('top_menu_not_logged_block', 'top_menu_not_logged', true);
 			$this->parse('top_menu_logged_block', '');		
 		}
+
 		$this->parse('MENU_TOP', 'tpl_menu_top');
 		
 		// sidebar menu

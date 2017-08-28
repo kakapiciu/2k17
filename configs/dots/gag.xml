@@ -29,7 +29,8 @@
 		<variable option="frontend">
 			<pageTitle>
 				<action>
-					<list>Gags</list>
+					<list-by-rank>Gags</list-by-rank>
+					<list-by-date>Gags</list-by-date>
 					<show>Gag</show>
 				</action>
 			</pageTitle>

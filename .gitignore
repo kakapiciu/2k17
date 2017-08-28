@@ -42,3 +42,4 @@ Thumbs.db
 configs/application.ini
 Zend/
 .idea/
+.idea/workspace.xml

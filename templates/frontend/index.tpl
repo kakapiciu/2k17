@@ -18,28 +18,40 @@
 	<![endif]-->
 </head>
 <body>
-	<div id="wrapper">
-		<header>
-			<div id="header-content" class="clearfix">
-				<div id="logo">
-					<h1><a href="{SITE_URL}/">{SITE_NAME}</a></h1>
+
+		<header >
+		<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+		<div class="navbar-header">
+	
+					<h1><a class="navbar-brand" href="{SITE_URL}/"><img height="35" width="50" src="{SITE_URL}/images/2K17-logo.png"></a></h1>
+						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+				
+
 				</div>
+				<div class="navbar-collapse collapse" id="navbar-main">
 				{MENU_TOP}
+				</div>
+			</div>
 			</div>
 		</header>
-		<div id="body">
-			<nav id="sidebar">
-				{MENU_SIDEBAR}
-			</nav>
-			<div id="content">
-				<h1>{PAGE_CONTENT_TITLE}</h1>
+	
+
+			<div class="container">
+			<div class="jumbotron">
+				<!-- <h1>{PAGE_CONTENT_TITLE}</h1> -->
 				{MESSAGE_BLOCK}
 				{MAIN_CONTENT}
-			</div>
+				</div>
 			<div class="clear"></div>
-		</div>
+			</div>
+		
 		<div id="push"></div>
-	</div>
+	
 	<footer>
 		<div id="footer-content">
 			{MENU_FOOTER}

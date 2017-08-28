@@ -19,6 +19,7 @@ class Gag_View extends View
             $this->tpl->setVar("GAG_URLIMAGE", $gag['urlimage']);
             $this->tpl->setVar("GAG_TITLE", $gag['title']);
             $this->tpl->setVar("GAG_LIKES", $gag['likes']);
+            $this->tpl->setVar("GAG_DATE", $gag['date']);
             // set the like and dislike buttone condition base on data from db
             if (isset($this->session->user->id) && isset($gag['arrayLikes'])&& !empty($gag['arrayLikes'])){
 
@@ -54,16 +55,16 @@ class Gag_View extends View
             $this->tpl->parse("gag_list_block", 'gag_list', true);
 		}
 	}
-	public function showGagEdit($templateFile='', $gagList)
-	{ 
+	public function showGagEdit($templateFile='', $gag)
+	{      
+        // Zend_Debug::dump($gag); exit;
 		if ($templateFile != '') $this->templateFile = $templateFile;
 		$this->tpl->setFile('tpl_main', 'gag/' . $this->templateFile . '.tpl');
-		foreach ($gagList as $gag) {
-			foreach ($gag as $gagKey => $gagValue) {
-			$this->tpl->setVar(strtoupper("GAG_".$gagKey),$gagValue);
-			}
-		}
-	}
+	
+		$this->tpl->setVar("GAG_DATE",$gag['date']);
+        $this->tpl->setVar("GAG_URLIMAGE",$gag['urlimage']);
+        $this->tpl->setVar("GAG_TITLE",$gag['title']);
+    }
 	//add template for adding gag
 	public function showAddGag($templateFile="" )
 	{
@@ -87,7 +88,7 @@ class Gag_View extends View
                     switch ($like['like']) {
 
                         case '1':
-                            $this->tpl->setVar('USER_LIKED', 'color:red;');
+                            $this->tpl->setVar('USER_LIKED', 'active');
                             $this->tpl->setVar('USER_DISLIKE', '');
                             break;
                         case '0':
@@ -96,7 +97,7 @@ class Gag_View extends View
                             break;
                         case '-1':
                             $this->tpl->setVar('USER_LIKED', '');
-                            $this->tpl->setVar('USER_DISLIKE', 'color:red;');
+                            $this->tpl->setVar('USER_DISLIKE', 'active');
                             break;
                     }
                 } else {
@@ -131,6 +132,7 @@ class Gag_View extends View
 		$this->tpl->setBlock('comment_reply','comment_reply_buttones','comment_reply_buttones_block');
 
 		foreach ($commentList as $comment) {
+            $this->tpl->setVar("COMMENT_URLIMAGE",$comment['urlimage']);
 			$this->tpl->setVar("COMMENT_USERNAME",$comment['username']);
 			$this->tpl->setVar("COMMENT_ID",$comment['id']);
             $this->tpl->setVar("COMMENT_LIKES",$comment['likes']);
@@ -144,7 +146,7 @@ class Gag_View extends View
                         switch ($like['like']) {
 
                             case '1':
-                                $this->tpl->setVar('COMMENT_LIKED', 'color:red;');
+                                $this->tpl->setVar('COMMENT_LIKED', 'active');
                                 $this->tpl->setVar('COMMENT_DISLIKE', '');
                                 break;
                             case '0':
@@ -153,7 +155,7 @@ class Gag_View extends View
                                 break;
                             case '-1':
                                 $this->tpl->setVar('COMMENT_LIKED', '');
-                                $this->tpl->setVar('COMMENT_DISLIKE', 'color:red;');
+                                $this->tpl->setVar('COMMENT_DISLIKE', 'active');
                                 break;
                         }
                     } else {
@@ -175,11 +177,13 @@ class Gag_View extends View
 
 			if(isset($comment['replies'])) {
                 foreach($comment['replies'] as $replyKey => $reply) {
+
                     $this->tpl->setVar('REPLY_USERNAME',$reply['username']);
                     $this->tpl->setVar('REPLY_ID',$reply['id']);
                     $this->tpl->setVar('REPLY_LIKES',$reply['likes']);
-                    $this->tpl->setVar('REPLY_CONTENT',$reply['content']);
+                    $this->tpl->setVar('REPLY_CONTENT',$reply['linkUser'].$reply['content']);
 					$this->tpl->setVar('REPLY_DATE',$reply['date']);
+                    $this->tpl->setVar('REPLY_URLIMAGE',$reply['urlimage']);
 					// set the like and dislike buttone condition base on data from db
                     if (isset($this->session->user->id) && isset($reply['arrayLikes']) && !empty($reply['arrayLikes'])) {
                         foreach ($reply['arrayLikes'] as $like) {
@@ -188,7 +192,7 @@ class Gag_View extends View
                                 switch ($like['like']) {
 
                                     case '1':
-                                        $this->tpl->setVar('REPLY_LIKED', 'color:red;');
+                                        $this->tpl->setVar('REPLY_LIKED', 'active');
                                         $this->tpl->setVar('REPLY_DISLIKE', '');
                                         break;
                                     case '0':
@@ -197,7 +201,7 @@ class Gag_View extends View
                                         break;
                                     case '-1':
                                         $this->tpl->setVar('REPLY_LIKED', '');
-                                        $this->tpl->setVar('REPLY_DISLIKE', 'color:red;');
+                                        $this->tpl->setVar('REPLY_DISLIKE', 'active');
                                         break;
                                 }
                             } else {

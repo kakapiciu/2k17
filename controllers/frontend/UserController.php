@@ -97,17 +97,17 @@ switch ($registry->requestAction)
 			
 			$values = array('details' => 
 							array(
-								'firstName'=>(isset($_POST['firstName']) ? $_POST['firstName'] : ''),
-								'lastName'=>(isset($_POST['lastName']) ? $_POST['lastName'] : '')),
-								'email' => array('email' => (isset($_POST['email']) ? $_POST['email'] : '')
+								'firstName'=>(isset($_POST['firstName']) ? htmlentities($_POST['firstName']) : ''),
+								'lastName'=>(isset($_POST['lastName']) ? htmlentities($_POST['lastName']) : '')),
+								'email' => array('email' => (isset($_POST['email']) ? htmlentities($_POST['email']) : '')
 							)
 					);
 			
 			// Only if a new password is provided we will update the password field
 			if($_POST['password'] != '' || $_POST['password2'] !='' )
 			{
-				$values['password'] = array('password' => $_POST['password'],
-								 										'password2' =>  $_POST['password2']);
+				$values['password'] = array('password' => htmlentities($_POST['password']),
+								 										'password2' =>  htmlentities($_POST['password2']));
 			}
 			
 			$dotValidateUser = new Dot_Validate_User(

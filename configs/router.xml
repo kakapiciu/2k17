@@ -28,6 +28,7 @@
 			<frontend>
 				<Page>home</Page>
 				<User>login</User>
+				<Article>list-by-rank</Article>
 			</frontend>
 			<admin>
 				<Admin>account</Admin>

@@ -101,4 +101,13 @@ class User_View extends View
 		//empty because we don't want to show the password
 		$this->tpl->setVar('PASSWORD', '');
 	}
+	public function showMyAccount($templateFile, $data='')
+	{
+		if ($templateFile != '') $this->templateFile = $templateFile;
+		$this->tpl->setFile('tpl_main', 'user/' . $templateFile . '.tpl');
+		foreach ($data as $k=>$v)
+		{
+			$this->tpl->setVar(strtoupper($k), $v);
+		}
+	}
 }

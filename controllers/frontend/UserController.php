@@ -309,6 +309,11 @@ switch ($registry->requestAction)
 		header('location: '.$registry->configuration->website->params->url);
 		exit;
 	break;
+
+	case 'myaccount':
+		$data=$userModel->getUserInfo($registry->session->user->id);
+		$userView->showMyAccount('myAccount', $data);
+		break;
 }
 function validateImage ($type , $data) {
 	$errors=[];

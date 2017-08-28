@@ -22,7 +22,7 @@
 		<a href="{SITE_URL}/gag/list-by-user">My Gag`s</a> 
 	</li>
 	<li class="{SEL_USER_ACCOUNT}">
-		<a href="{SITE_URL}/user/account">{USERNAME}</a>
+		<a href="{SITE_URL}/user/myAccount">{USERNAME}</a>
 	</li>
 	<li class="dropdown dropdown-notifications">
             <a href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown">

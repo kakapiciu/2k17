@@ -135,7 +135,7 @@ class User extends Dot_Model_User
 				$link=$_SESSION['saveUrl'];
 				unset($_SESSION['saveUrl']);
 			}else {
-			$link = isset($session->wantUrl) ? $session->wantUrl : $this->config->website->params->url.'/user/account';
+			$link = isset($session->wantUrl) ? $session->wantUrl : $this->config->website->params->url.'/user/myaccount';
 			}
 			header('location: '.$link);
 			exit;
@@ -145,5 +145,13 @@ class User extends Dot_Model_User
 			$session->message['txt'] = $this->option->errorMessage->login;
 			$session->message['type'] = 'error';
 		}
+	}
+	public function getGagList($id)
+	{
+		$select=$this->db->select()
+							->from('post')
+							->where('userId = ?' , $id);
+		$result=$this->db->fetchAll($select);
+		return $result;
 	}
 }

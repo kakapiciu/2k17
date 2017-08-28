@@ -88,39 +88,17 @@
 			</subItems>
 		</item>
 		<item>
-			<title>Article</title>
-			<link>article/list/</link>
-			<description>list all items</description>
-				<subItems>
-					<subItem>
-					<title>Delete</title>
-					<link>article/delete/</link>
-					<description>Delete Item</description>
-				</subItem>
-				<subItem>
-					<title>List</title>
-					<link>article/list/</link>
-					<description>Article List</description>
-				</subItem>
-				<subItem>
-					<title>Add Article</title>
-					<link>article/add/</link>
-					<description>Add Article</description>
-				</subItem>
-				</subItems>
-		</item>
-		<item>
 			<title>Gags</title>
 			<link>gag/list</link>
 			<description>list all items</description>
 				<subItems>
 					<subItem>
-					<title>Gag List</title>
+					<title>List</title>
 					<link>gag/list/</link>
-					<description>Article List</description>
+					<description>Gag List</description>
 				</subItem>
 				<subItem>
-					<title>Add Gag</title>
+					<title>Add New</title>
 					<link>gag/add/</link>
 					<description>Add Gag</description>
 				</subItem>
